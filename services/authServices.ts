@@ -8,13 +8,13 @@ import {
 } from "./apiUrls";
 
 const AuthServices = {
-  // signUp: (data: any) => {
-  //   return Axios({
-  //     url: URL_SIGN_UP,
-  //     method: "POST",
-  //     data,
-  //   });
-  // },
+  signUp: (data: any) => {
+    return Axios({
+      url: URL_SIGN_UP,
+      method: "POST",
+      data,
+    });
+  },
   login: (data: LoginFormData) => {
     return Axios({
       url: URL_LOGIN,

@@ -4,7 +4,7 @@ export const DOMAIN_NAME_FILE_SERVICE =
 
 //AUTH
 export const URL_LOGIN = `${DOMAIN_NAME}/auth/login`;
-// export const URL_SIGN_UP = `${DOMAIN_NAME}/auth/signup`;
+export const URL_SIGN_UP = `${DOMAIN_NAME}/auth/signup`;
 // export const URL_FORGOT_PASSWORD = `${DOMAIN_NAME}/auth/reset-password`;
 // export const URL_RESET_PASSWORD = `${DOMAIN_NAME}/auth/reset-password/change-password`;
 

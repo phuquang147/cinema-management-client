@@ -1,11 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
+import rootReducer from "./slices";
 
 export const store = configureStore({
-  reducer: {
-    // posts: postsReducer,
-    // comments: commentsReducer,
-    // users: usersReducer,
-  },
+  reducer: rootReducer,
 });
 
 export type RootState = ReturnType<typeof store.getState>;
