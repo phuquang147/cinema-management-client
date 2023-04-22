@@ -1,5 +1,8 @@
 import Axios from "axios";
+import { RegisterFormData } from "~/pages/dang-ky";
 import { LoginFormData } from "~/pages/dang-nhap";
+import { ResetPasswordFormData } from "~/pages/quen-mat-khau";
+import { ChangePasswordFormData } from "~/pages/quen-mat-khau/[passwordToken]/[accountId]";
 import {
   URL_FORGOT_PASSWORD,
   URL_LOGIN,
@@ -8,7 +11,7 @@ import {
 } from "./apiUrls";
 
 const AuthServices = {
-  signUp: (data: any) => {
+  signUp: (data: RegisterFormData) => {
     return Axios({
       url: URL_SIGN_UP,
       method: "POST",
@@ -22,20 +25,20 @@ const AuthServices = {
       data,
     });
   },
-  // resetPassword: (data: any) => {
-  //   return Axios({
-  //     url: URL_FORGOT_PASSWORD,
-  //     method: "POST",
-  //     data,
-  //   });
-  // },
-  // changePassword: (data: any) => {
-  //   return Axios({
-  //     url: URL_RESET_PASSWORD,
-  //     method: "POST",
-  //     data,
-  //   });
-  // },
+  resetPassword: (data: ResetPasswordFormData) => {
+    return Axios({
+      url: URL_FORGOT_PASSWORD,
+      method: "POST",
+      data,
+    });
+  },
+  changePassword: (data: ChangePasswordFormData) => {
+    return Axios({
+      url: URL_RESET_PASSWORD,
+      method: "POST",
+      data,
+    });
+  },
 };
 
 export default AuthServices;
