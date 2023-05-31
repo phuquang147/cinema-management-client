@@ -323,7 +323,8 @@ $border-color-hover: $color-black;
     "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 
   & span,
-  & strong {
+  & strong,
+  & p {
     color: #ccc !important;
   }
 

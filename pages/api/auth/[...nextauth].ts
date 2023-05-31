@@ -28,7 +28,7 @@ export const authOptions: NextAuthOptions = {
           });
 
           if (status === 200) {
-            return data;
+            return data.user;
           } else return null;
         }
       },
