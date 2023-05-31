@@ -1,19 +1,18 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
-import logoRed from "~/assets/images/logo-red.svg";
-import logoWhite from "~/assets/images/logo-white.svg";
 
-type LogoProps = {
-  color: "white" | "red";
-};
-
-const Logo: React.FC<LogoProps> = ({ color }) => {
+const Logo: React.FC = () => {
   return (
-    <Image
-      src={color === "red" ? logoRed : logoWhite}
-      alt=""
-      className="cursor-pointer"
-    />
+    <Link href="/" className="relative h-10 w-52 flex justify-start">
+      <Image
+        src="/assets/images/logo-text-red.png"
+        alt=""
+        fill
+        objectFit="contain"
+        className="cursor-pointer"
+      />
+    </Link>
   );
 };
 

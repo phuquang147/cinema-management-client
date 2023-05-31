@@ -22,8 +22,12 @@ const navConfig: NavItemConfigProps[] = [
     // ],
   },
   {
-    name: "Blog",
+    name: "Bài viết",
     link: "/bai-viet",
+  },
+  {
+    name: "Diễn viên",
+    link: "/dien-vien",
   },
 ];
 

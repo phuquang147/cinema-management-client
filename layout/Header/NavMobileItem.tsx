@@ -21,7 +21,7 @@ const NavMobileItem: React.FC<NavMobileItemProps> = ({ navItem }) => {
         className={`w-full py-2 px-4 flex justify-between items-center text-base font-bold ${
           openSubMenu
             ? "bg-primary text-white"
-            : "text-slate-800 hover:bg-slate-100"
+            : "text-gray-text dark:text-light-text hover:bg-slate-100"
         } rounded`}
       >
         {navItem.name}
@@ -33,7 +33,7 @@ const NavMobileItem: React.FC<NavMobileItemProps> = ({ navItem }) => {
             <Link
               key={subNavItem.name}
               href={subNavItem.link ? subNavItem.link : "/"}
-              className="w-full py-2 pl-8 pr-4 text-slate-800 text-base font-bold hover:bg-slate-100 rounded"
+              className="w-full py-2 pl-8 pr-4 text-gray-text dark:text-light-text text-base font-bold hover:bg-slate-100 rounded"
             >
               {navItem.name}
             </Link>
@@ -44,7 +44,7 @@ const NavMobileItem: React.FC<NavMobileItemProps> = ({ navItem }) => {
   ) : (
     <Link
       href={navItem.link ? navItem.link : "/"}
-      className="py-2 px-4 text-slate-800 text-base font-bold hover:bg-slate-100 rounded"
+      className="py-2 px-4 text-gray-text dark:text-light-text text-base font-bold hover:bg-slate-100 dark:hover:bg-bg-color-secondary rounded"
     >
       {navItem.name}
     </Link>
