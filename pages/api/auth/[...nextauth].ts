@@ -28,7 +28,7 @@ export const authOptions: NextAuthOptions = {
           });
 
           if (status === 200) {
-            return data.user;
+            return data;
           } else return null;
         }
       },
@@ -38,7 +38,7 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       return { ...token, ...user };
     },
-    async session({ session, token, user }) {
+    async session({ session, token }) {
       session.user = token;
 
       return session;
