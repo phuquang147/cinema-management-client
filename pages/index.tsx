@@ -7,7 +7,6 @@ import Post from "~/components/Post";
 import Button from "~/components/UI/Button";
 import SectionHeading from "~/components/UI/SectionHeading";
 import { useAppDispatch, useAppSelector } from "~/redux/hooks";
-import { getMovies } from "~/redux/slices/MovieSlice";
 import { getPosts } from "~/redux/slices/PostSlice";
 
 const Home: NextPage = () => {

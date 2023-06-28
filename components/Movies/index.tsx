@@ -3,7 +3,7 @@ import { IconChevronLeft, IconChevronRight } from "@tabler/icons";
 import React, { useEffect, useState } from "react";
 import Button from "~/components/UI/Button";
 import { useAppDispatch, useAppSelector } from "~/redux/hooks";
-import { getMovies } from "~/redux/slices/MovieSlice";
+import { getIncomingMovies, getShowingMovies } from "~/redux/slices/MovieSlice";
 import Tabs from "../Tabs";
 import Movie from "./Movie";
 
@@ -15,15 +15,19 @@ const tabs = ["Phim đang chiếu", "Phim sắp chiếu"];
 
 const Movies: React.FC<MoviesProps> = ({ type }) => {
   const dispatch = useAppDispatch();
-  const { movies } = useAppSelector((state) => state.movie);
+  const { incomingMovies, showingMovies } = useAppSelector(
+    (state) => state.movie
+  );
   const [activeTab, setActiveTab] = useState<number>(0);
 
   const handleChangeTab = (index: number) => {
     setActiveTab(index);
+    if (index === 0) dispatch(getShowingMovies());
+    else dispatch(getIncomingMovies());
   };
 
   useEffect(() => {
-    dispatch(getMovies());
+    dispatch(getShowingMovies());
   }, []);
 
   return (
@@ -69,11 +73,13 @@ const Movies: React.FC<MoviesProps> = ({ type }) => {
               </div>
 
               <SplideTrack>
-                {movies.map((movie) => (
-                  <SplideSlide key={movie._id}>
-                    <Movie movie={movie} />
-                  </SplideSlide>
-                ))}
+                {(activeTab === 0 ? showingMovies : incomingMovies).map(
+                  (movie) => (
+                    <SplideSlide key={movie._id}>
+                      <Movie movie={movie} />
+                    </SplideSlide>
+                  )
+                )}
               </SplideTrack>
             </Splide>
             <div className="flex justify-center mt-6">
@@ -88,13 +94,15 @@ const Movies: React.FC<MoviesProps> = ({ type }) => {
               setActiveTab={handleChangeTab}
             />
             <div className="grid grid-cols-12 gap-x-8 gap-y-10 mt-10">
-              {movies.map((movie) => (
-                <Movie
-                  key={movie._id}
-                  movie={movie}
-                  className="col-span-12 md:col-span-6 lg:col-span-4"
-                />
-              ))}
+              {(activeTab === 0 ? showingMovies : incomingMovies).map(
+                (movie) => (
+                  <Movie
+                    key={movie._id}
+                    movie={movie}
+                    className="col-span-12 md:col-span-6 lg:col-span-4"
+                  />
+                )
+              )}
             </div>
           </div>
         )}

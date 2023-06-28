@@ -5,7 +5,7 @@ import { useAppSelector } from "~/redux/hooks";
 import HeroSliderItem from "./HeroSliderItem";
 
 const HeroSlider: React.FC = () => {
-  const { movies } = useAppSelector((state) => state.movie);
+  const { showingMovies } = useAppSelector((state) => state.movie);
 
   return (
     <Splide
@@ -29,7 +29,7 @@ const HeroSlider: React.FC = () => {
       </div>
 
       <SplideTrack>
-        {movies.map((sliderItemData) => (
+        {showingMovies.map((sliderItemData) => (
           <HeroSliderItem
             key={sliderItemData._id}
             sliderItemData={sliderItemData}
