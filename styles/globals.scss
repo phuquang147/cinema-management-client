@@ -468,3 +468,13 @@ $border-color-hover: $color-black;
 html {
   -webkit-font-smoothing: antialiased;
 }
+
+.booked-seat {
+  background: repeating-linear-gradient(
+    -45deg,
+    #bbb,
+    #bbb 10px,
+    #ddd 10px,
+    #ddd 20px
+  );
+}
