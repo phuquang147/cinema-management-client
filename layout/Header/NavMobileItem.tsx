@@ -44,7 +44,7 @@ const NavMobileItem: React.FC<NavMobileItemProps> = ({ navItem }) => {
   ) : (
     <Link
       href={navItem.link ? navItem.link : "/"}
-      className="py-2 px-4 text-gray-text dark:text-light-text text-base font-bold hover:bg-slate-100 dark:hover:bg-bg-color-secondary rounded"
+      className="py-2 px-4 text-gray-text dark:text-light-text text-base font-bold hover:bg-slate-100 dark:hover:bg-dark-bg-secondary rounded"
     >
       {navItem.name}
     </Link>

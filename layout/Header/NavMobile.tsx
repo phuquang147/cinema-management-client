@@ -20,7 +20,7 @@ const NavMobile: React.FC<NavMobileProps> = ({ onCloseNavMobile }) => {
     <div className="fixed left-0 z-50 w-full h-screen">
       <div className="h-full relative">
         <div className="absolute left-0 h-full w-full bg-black bg-opacity-50 animate-fade-in"></div>
-        <div className="absolute right-0 h-full w-3/4 ml-auto bg-white dark:bg-bgColor animate-float-right">
+        <div className="absolute right-0 h-full w-3/4 ml-auto bg-white dark:bg-dark-bg-primary animate-float-right">
           <div className="flex justify-between items-center">
             <Logo />
             <div className="flex items-center gap-8">
