@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
   return (
     <div>
       <Divider />
-      <div className="w-full pt-10 pb-20 bg-footer bg-contain lg:bg-cover bg-no-repeat bg-bottom lg:bg-center bg-white dark:bg-bgColor">
+      <div className="w-full pt-10 pb-20 bg-footer bg-contain lg:bg-cover bg-no-repeat bg-bottom lg:bg-center bg-light-bg-primary dark:bg-dark-bg-primary">
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-3 gap-y-6">
           <div className="relative h-24 w-3/4">
             <Image
@@ -60,7 +60,7 @@ const Footer: React.FC = () => {
               <input
                 type="text"
                 placeholder="Email"
-                className="flex-1 outline-none py-3 px-6 rounded-l-full bg-gray-100 dark:bg-bg-color-secondary text-gray-text dark:text-light-text"
+                className="flex-1 outline-none py-3 px-6 rounded-l-full bg-gray-100 dark:bg-dark-bg-secondary text-gray-text dark:text-light-text"
               />
               <button className="bg-primary px-4 rounded-r-full">
                 <IconSend className="text-white" />
