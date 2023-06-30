@@ -22,13 +22,13 @@ const Home: NextPage = () => {
       <Head>
         <title>Cinemate - Đặt vé phim ngay!</title>
       </Head>
-      <div className="min-h-screen bg-white dark:bg-bgColor">
+      <div className="min-h-screen bg-light-bg-primary dark:bg-dark-bg-primary">
         <HeroSlider />
         <div className="container mx-auto">
           <SectionHeading text="Danh sách phim" />
           <Movies type="slide" />
           <SectionHeading text="Danh sách bài viết" className="mb-7" />
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
             {posts.map((post) => (
               <Post key={post._id} post={post} />
             ))}

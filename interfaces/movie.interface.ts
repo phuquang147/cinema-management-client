@@ -1,3 +1,14 @@
+export interface IComment {
+  author: { _id: string; name: string };
+  comment: string;
+  createdAt: string;
+  dislikes: string[];
+  isReply: true;
+  likes: string[];
+  replies: IComment[];
+  updatedAt: string;
+  _id: string;
+}
 export default interface IMovie {
   _id: string;
   name: string;
@@ -8,9 +19,10 @@ export default interface IMovie {
   thumbnail: string;
   images: string[];
   duration: number;
-  premiereDate: Date;
-  endDay: Date;
+  premiereDay: string;
+  endDay: string;
   language: string;
   trailer: string;
   slug: string;
+  comments: IComment[];
 }
