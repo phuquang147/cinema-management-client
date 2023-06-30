@@ -1,6 +1,7 @@
 import ActorSlice from "./ActorSlice";
 import AuthSlice from "./AuthSlice";
 import BookingSlice from "./BookingSlice";
+import CommonSlice from "./CommonSlice";
 import MovieSlice from "./MovieSlice";
 import PostSlice from "./PostSlice";
 import ShowTimeSlice from "./ShowTimeSlice";
@@ -16,6 +17,7 @@ const rootReducer = {
   showTime: ShowTimeSlice,
   booking: BookingSlice,
   transaction: TransactionSlice,
+  common: CommonSlice,
 };
 
 export default rootReducer;
