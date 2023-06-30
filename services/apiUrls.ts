@@ -13,8 +13,18 @@ export const URL_POST_IMAGE = `${DOMAIN_NAME}/upload-image`;
 
 // MOVIES
 export const URL_GET_MOVIES = `${DOMAIN_NAME}/movies`;
+export const URL_GET_INCOMING_MOVIES = `${DOMAIN_NAME}/movies?status=coming`;
+export const URL_GET_SHOWING_MOVIES = `${DOMAIN_NAME}/movies?status=showing`;
 export const URL_GET_MOVIE_BY_SLUG = (slug: string) =>
   `${DOMAIN_NAME}/movies/${slug}`;
+export const URL_CREATE_COMMENT = `${DOMAIN_NAME}/comments`;
+export const URL_REACT_COMMENT = (id: string) =>
+  `${DOMAIN_NAME}/comments/${id}/react`;
+export const URL_UPDATE_COMMENT = (id: string) =>
+  `${DOMAIN_NAME}/comments/${id}`;
+export const URL_DELETE_COMMENT = (id: string) =>
+  `${DOMAIN_NAME}/comments/${id}`;
+export const URL_CREATE_RATING = `${DOMAIN_NAME}/ratings`;
 
 //SNACKS
 export const URL_GET_SNACKS = `${DOMAIN_NAME}/items`;
@@ -37,4 +47,7 @@ export const URL_GET_SHOW_TIME_BY_ID = (id: string) =>
 
 // TRANSACTIONS
 export const URL_GET_TRANSACTIONS = `${DOMAIN_NAME}/transactions`;
-export const URL_ADD_TRANSACTION = `${DOMAIN_NAME}/transactions`;
+export const URL_CREATE_TRANSACTION = `${DOMAIN_NAME}/transactions`;
+
+// NATIONS
+export const URL_GET_NATIONS = `${DOMAIN_NAME}/actor-nations`;
