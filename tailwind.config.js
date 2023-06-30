@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   mode: "jit",
+  darkMode: "class",
   content: [
     "./public/**/*.html",
     "./app/**/*.{js,ts,jsx,tsx}",
@@ -12,10 +13,16 @@ module.exports = {
     extend: {
       colors: {
         primary: "#f45e61",
-        bgColor: "#1f1d2c",
-        "bg-color-secondary": "#262837",
+        "light-bg-primary": "#f1ece5",
+        "light-bg-secondary": "#fff",
+        "dark-bg-primary": "#222831",
+        "dark-bg-secondary": "#1d222a",
+        light: "#f1ece5",
+        "light-gray-bg": "#f7f7f7",
         "light-pink": "#ff55a5",
         "light-red": "#ff5860",
+        "light-text": "#ccc",
+        "gray-text": "#333",
       },
       keyframes: {
         floatTop: {
