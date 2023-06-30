@@ -14,9 +14,9 @@ export const ISOToDateFormat = (ISO: string) => {
 
 export const dateTimeToISO = (date: Date) => {
   const newDate = new Date(date);
-  newDate.setHours(newDate.getHours() + 7);
+  // newDate.setHours(newDate.getHours() + 7);
 
-  return newDate.toISOString();
+  return date.toISOString();
 };
 
 export const isoToDateTime = (isoDate: string) => {
@@ -35,6 +35,7 @@ export const getSevenDatesFromToday = () => {
       id: date.getTime().toString(),
       day: date.getDay() > 0 ? `Thứ ${date.getDay() + 1}` : "CN",
       date: `${date.getDate()}/${date.getMonth() + 1}`,
+      year: date.getFullYear(),
     });
 
     date.setDate(date.getDate() + 1);
