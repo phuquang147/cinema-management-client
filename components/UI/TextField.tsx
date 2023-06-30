@@ -1,27 +1,44 @@
 import { IconEye, IconEyeOff } from "@tabler/icons";
-import { HTMLInputTypeAttribute, useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  HTMLInputTypeAttribute,
+  useEffect,
+  useState,
+} from "react";
 import { FieldError, UseFormRegister } from "react-hook-form";
 
 type TextFieldProps = {
   type?: HTMLInputTypeAttribute;
-  name: string;
+  name?: string;
   label?: string;
   placeholder?: string;
-  register: UseFormRegister<any>;
+  register?: UseFormRegister<any>;
   error?: FieldError | undefined;
   inputClassName?: string;
   containerClassName?: string;
-};
+  multiple?: boolean;
+  value?: string;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+} & (
+  | (Partial<Record<"register", UseFormRegister<any>>> &
+      Required<Record<"name", string>> &
+      Required<Record<"error", FieldError | undefined>>)
+  | (Partial<Record<"value", string>> &
+      Required<Record<"onChange", (e: ChangeEvent<HTMLInputElement>) => void>>)
+);
 
 const TextField: React.FC<TextFieldProps> = ({
   type = "text",
-  name,
+  name = "",
   label,
   placeholder = "",
   register,
   error,
   inputClassName,
   containerClassName,
+  multiple = false,
+  value = "",
+  onChange,
 }) => {
   const [insideType, setInsideType] = useState<HTMLInputTypeAttribute>("text");
 
@@ -44,14 +61,27 @@ const TextField: React.FC<TextFieldProps> = ({
         </label>
       )}
       <div className="w-full relative">
-        <input
-          type={insideType}
-          {...register(name)}
-          className={`w-full outline-none px-6 py-2 rounded hover:outline hover:outline-primary focus:outline focus:outline-primary transition-all duration-200 ${
-            type === "password" && "pr-10"
-          } ${inputClassName}`}
-          placeholder={placeholder}
-        />
+        {multiple ? (
+          <textarea
+            {...register?.(name)}
+            className={`w-full outline-none px-6 py-2 rounded border-2 border-b-gray-200 dark:border-dark-bg-primary hover:border-primary focus:border-primary transition-colors duration-200 bg-white dark:bg-dark-bg-primary text-gray-text dark:text-light-text ${
+              type === "password" && "pr-10"
+            } ${inputClassName}`}
+            placeholder={placeholder}
+          />
+        ) : (
+          <input
+            type={insideType}
+            {...register?.(name)}
+            // value={value}
+            // onChange={onChange}
+            className={`w-full outline-none px-6 py-2 rounded border-2 border-b-gray-200 dark:border-dark-bg-primary hover:border-primary focus:border-primary transition-colors duration-200 bg-white dark:bg-dark-bg-primary text-gray-text dark:text-light-text ${
+              type === "password" && "pr-10"
+            } ${inputClassName}`}
+            placeholder={placeholder}
+            multiple
+          />
+        )}
         {type === "password" && (
           <button
             onClick={handleToggleTextVisibility}

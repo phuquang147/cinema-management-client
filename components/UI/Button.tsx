@@ -3,13 +3,14 @@ import { ReactNode } from "react";
 
 type ButtonProps = {
   type?: "button" | "submit" | "reset";
-  variant?: "primary" | "contained" | "icon";
+  variant?: "primary" | "contained" | "icon" | "outlined";
   children?: ReactNode | undefined;
   to?: string;
   onClick?: () => void;
   isBlock?: boolean;
   disabled?: boolean;
   className?: string;
+  outlinedClassName?: string;
   href?: string;
   target?: string;
   width?: string;
@@ -23,12 +24,14 @@ const padding = {
   primary: "py-3 px-8",
   contained: "py-3 px-8",
   icon: "py-2 px-2",
+  outlined: "py-[3px] px-[3px]",
 };
 
 const color = {
   primary: "text-white",
   contained: "text-white",
   icon: "text-primary text-2xl",
+  outlined: "text-primary",
 };
 
 const backgroundColors = {
@@ -36,6 +39,8 @@ const backgroundColors = {
     "bg-gradient-to-r from-light-pink to-light-red shadow-red hover:brightness-110 transition-all duration-200 active:shadow-none",
   contained: "bg-primary",
   icon: "bg-transparent",
+  outlined:
+    "bg-gradient-to-r from-light-pink to-light-red shadow-red hover:brightness-110 transition-all duration-200 active:shadow-none",
 };
 
 const border = {
@@ -43,6 +48,7 @@ const border = {
   contained:
     "outline-none rounded focus:ring-1 focus:ring-primary ring-offset-2",
   icon: "border-primary text-primary hover:bg-primary hover:text-white outline-none rounded-full border-[1px] focus:ring-1 focus:ring-primary ring-offset-2",
+  outlined: "outline-none rounded",
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -52,6 +58,7 @@ const Button: React.FC<ButtonProps> = ({
   to,
   onClick,
   className = "",
+  outlinedClassName = "",
   disabled = false,
   href,
   target,
@@ -115,7 +122,15 @@ const Button: React.FC<ButtonProps> = ({
       className={baseClasses.join(" ")}
       disabled={disabled}
     >
-      {children}
+      {variant === "outlined" ? (
+        <div
+          className={`py-[9px] px-[29px] bg-white dark:bg-dark-bg-primary rounded-sm ${outlinedClassName}`}
+        >
+          {children}
+        </div>
+      ) : (
+        children
+      )}
     </button>
   );
 };

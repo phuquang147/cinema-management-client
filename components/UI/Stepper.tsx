@@ -31,7 +31,7 @@ const Stepper: React.FC<StepperProps> = ({
           }}
         >
           <div
-            className={`bg-bgColor border-2 rounded-full h-10 w-10 flex justify-center items-center font-bold ${stateClasses(
+            className={`bg-dark-bg-primary border-2 rounded-full h-10 w-10 flex justify-center items-center font-bold ${stateClasses(
               index,
               currentStep
             )}`}
