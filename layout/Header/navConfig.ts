@@ -10,24 +10,23 @@ const navConfig: NavItemConfigProps[] = [
   {
     name: "Phim",
     link: "/phim",
-    // children: [
-    //   {
-    //     name: "Phim đang chiếu",
-    //     link: "/phim",
-    //   },
-    //   {
-    //     name: "Phim sắp chiếu",
-    //     link: "/phim",
-    //   },
-    // ],
   },
   {
-    name: "Bài viết",
-    link: "/bai-viet",
-  },
-  {
-    name: "Diễn viên",
-    link: "/dien-vien",
+    name: "Góc điện ảnh",
+    children: [
+      {
+        name: "Thể loại phim",
+        link: "/the-loai-phim",
+      },
+      {
+        name: "Diễn viên",
+        link: "/dien-vien",
+      },
+      {
+        name: "Bài viết",
+        link: "/bai-viet",
+      },
+    ],
   },
 ];
 
