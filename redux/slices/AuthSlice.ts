@@ -11,7 +11,7 @@ interface AuthState {}
 const initialState: AuthState = {};
 
 export const userSlice = createSlice({
-  name: "user",
+  name: "auth",
   initialState,
   reducers: {},
 });
