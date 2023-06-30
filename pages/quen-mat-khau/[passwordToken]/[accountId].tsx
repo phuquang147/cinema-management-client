@@ -69,7 +69,7 @@ const ChangePassword: NextPage = () => {
       <div className="bg-auth bg-cover bg-bottom">
         <div className="min-h-fit container mx-auto py-10 flex justify-center items-center">
           <div className="pt-[3px] bg-gradient-to-r from-light-pink to-light-red rounded overflow-hidden">
-            <div className="w-[500px] max-w-full bg-bg-color-secondary p-16 flex flex-col items-center gap-y-8 shadow-lg">
+            <div className="w-[500px] max-w-full bg-dark-bg-secondary p-16 flex flex-col items-center gap-y-8 shadow-lg">
               <Image src={logo} alt="" />
               <h1 className="text-2xl font-bold uppercase text-gray-100">
                 Tạo mật khẩu mới
@@ -84,7 +84,7 @@ const ChangePassword: NextPage = () => {
                   placeholder="Mật khẩu"
                   register={register}
                   error={errors.password}
-                  inputClassName="bg-bgColor text-white"
+                  inputClassName="bg-dark-bg-primary text-white"
                   containerClassName="col-span-12"
                 />
                 <TextField
@@ -93,7 +93,7 @@ const ChangePassword: NextPage = () => {
                   placeholder="Xác nhận mật khẩu"
                   register={register}
                   error={errors.confirmPassword}
-                  inputClassName="bg-bgColor text-white"
+                  inputClassName="bg-dark-bg-primary text-white"
                   containerClassName="col-span-12"
                 />
 
