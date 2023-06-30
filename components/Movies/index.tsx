@@ -31,7 +31,7 @@ const Movies: React.FC<MoviesProps> = ({ type }) => {
   }, []);
 
   return (
-    <div className="bg-white dark:bg-bgColor">
+    <div className="bg-light-bg-primary dark:bg-dark-bg-primary">
       <div className="mx-auto">
         {type === "slide" ? (
           <div>

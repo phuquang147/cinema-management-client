@@ -14,7 +14,7 @@ const Movie: React.FC<MovieProps> = ({ movie, className }) => {
   return (
     <div className={className}>
       <Link href={`/phim/${movie.slug}`}>
-        <div className="group rounded-lg relative w-full aspect-[4/3] overflow-hidden">
+        <div className="group rounded-xl relative w-full aspect-[3/2] overflow-hidden">
           <Image
             src={movie.thumbnail}
             alt=""
@@ -27,7 +27,7 @@ const Movie: React.FC<MovieProps> = ({ movie, className }) => {
             <span className="text-gray-200 ml-1 font-bold text-sm">5.5</span>
           </div>
           <div className="absolute bottom-0 left-0 w-full group-hover:h-full flex items-end bg-gradient-to-t from-[rgba(0,0,0,0.6)] to-transparent transition-all duration-500">
-            <p className="py-4 px-6 font-semibold text-white text-xl group-hover:text-primary transition-colors duration-200 line-clamp-1">
+            <p className="w-full py-4 px-6 font-semibold text-white text-xl group-hover:text-primary transition-colors duration-200 line-clamp-1">
               {movie.name}
             </p>
           </div>
