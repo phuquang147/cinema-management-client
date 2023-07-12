@@ -1,14 +1,14 @@
-import FsLightbox from "fslightbox-react";
 import Image from "next/image";
 import { FC, useState } from "react";
+import LightBox from "../LightBox";
 
 type MovieGalleryProps = {
   images: string[];
 };
 
 const MovieGallery: FC<MovieGalleryProps> = ({ images }) => {
-  const [toggler, setToggler] = useState<boolean>(false);
-  const [slideIndex, setSlideIndex] = useState<number>(1);
+  const [showLightBox, setShowLightBox] = useState<boolean>(false);
+  const [slideNumber, setSlideNumber] = useState<number>(1);
 
   return (
     <div>
@@ -18,20 +18,20 @@ const MovieGallery: FC<MovieGalleryProps> = ({ images }) => {
             key={image}
             className="relative w-full aspect-[5/3] rounded-xl overflow-hidden"
             onClick={() => {
-              setSlideIndex(index + 1);
-              setToggler(true);
+              setSlideNumber(index + 1);
+              setShowLightBox(true);
             }}
           >
             <Image src={image} alt="" fill objectFit="cover" />
           </div>
         ))}
       </div>
-      <FsLightbox
-        toggler={toggler}
+      <LightBox
+        showLightBox={showLightBox}
+        slideNumber={slideNumber}
         sources={images}
-        slide={slideIndex}
         onClose={() => {
-          setToggler(false);
+          setShowLightBox(false);
         }}
       />
     </div>

@@ -8,6 +8,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
 import ParticipatedInMovies from "~/components/ActorDetail/ParticipatedInMovies";
+import LightBox from "~/components/LightBox";
 import Tabs from "~/components/Tabs";
 import Divider from "~/components/UI/Divider";
 import IActor from "~/interfaces/actor.interface";
@@ -29,8 +30,8 @@ const tabs = ["Tiểu sử", "Bộ ảnh", "Các phim đã tham gia"];
 const Actor: NextPage = ({
   actor,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const [toggler, setToggler] = useState<boolean>(false);
-  const [slideIndex, setSlideIndex] = useState<number>(1);
+  const [showLightBox, setShowLightBox] = useState<boolean>(false);
+  const [slideNumber, setSlideNumber] = useState<number>(1);
   const [activeTab, setActiveTab] = useState<number>(0);
 
   const handleChangeTab = (index: number) => {
@@ -105,8 +106,8 @@ const Actor: NextPage = ({
                         key={image}
                         className="relative w-full aspect-[3/4]"
                         onClick={() => {
-                          setSlideIndex(index + 1);
-                          setToggler(true);
+                          setSlideNumber(index + 1);
+                          setShowLightBox(true);
                         }}
                       >
                         <Image src={image} alt="" fill objectFit="cover" />
@@ -114,12 +115,12 @@ const Actor: NextPage = ({
                     ))}
                   </div>
                 </div>
-                <FsLightbox
-                  toggler={toggler}
+                <LightBox
+                  showLightBox={showLightBox}
+                  slideNumber={slideNumber}
                   sources={(actor as IActor).images}
-                  slide={slideIndex}
                   onClose={() => {
-                    setToggler(false);
+                    setShowLightBox(false);
                   }}
                 />
               </div>
