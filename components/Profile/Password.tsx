@@ -1,40 +1,49 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
-import { genders } from "~/constants";
+import { useAppDispatch } from "~/redux/hooks";
+import { changeUserPassword } from "~/redux/slices/AuthSlice";
 import Button from "../UI/Button";
-import ComboBox from "../UI/ComboBox";
 import TextField from "../UI/TextField";
+import { useSession } from "next-auth/react";
 
-interface IFormInput {
-  oldPassword: string;
+export interface ChangeUserPasswordFormData {
+  password: string;
   newPassword: string;
-  confirmNewPassword: string;
+  confirmPassword: string;
 }
 
 const schema = yup
   .object({
-    oldPassword: yup.string().required("Vui lòng nhập mật khẩu cũ"),
+    password: yup.string().required("Vui lòng nhập mật khẩu cũ"),
     newPassword: yup.string().required("Vui lòng nhập mật khẩu mới"),
-    confirmNewPassword: yup.string().required("Vui lòng xác nhận mật khẩu mới"),
+    confirmPassword: yup.string().required("Vui lòng xác nhận mật khẩu mới"),
   })
   .required();
 
 const Password: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const session = useSession();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IFormInput>({
+  } = useForm<ChangeUserPasswordFormData>({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<ChangeUserPasswordFormData> = (data) => {
+    dispatch(
+      changeUserPassword({ data, jwt: (session as any).data?.user.token })
+    );
   };
+
   return (
-    <div className="w-full p-4 bg-dark-bg-secondary">
-      <h1 className="font-bold text-lg text-gray-100">Mật khẩu</h1>
+    <div className="w-full p-6 bg-light-bg-secondary dark:bg-dark-bg-secondary shadow-sm">
+      <h1 className="font-bold text-lg text-gray-text dark:text-light-text">
+        Mật khẩu
+      </h1>
 
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -42,10 +51,10 @@ const Password: React.FC = () => {
       >
         <TextField
           type="password"
-          name="oldPassword"
+          name="password"
           placeholder="Mật khẩu cũ"
           register={register}
-          error={errors.oldPassword}
+          error={errors.password}
           containerClassName="col-span-6"
           inputClassName="bg-dark-bg-primary text-white"
         />
@@ -60,10 +69,10 @@ const Password: React.FC = () => {
         />
         <TextField
           type="password"
-          name="confirmNewPassword"
+          name="confirmPassword"
           placeholder="Xác nhận mật khẩu mới"
           register={register}
-          error={errors.confirmNewPassword}
+          error={errors.confirmPassword}
           containerClassName="col-span-6"
           inputClassName="bg-dark-bg-primary text-white"
         />
