@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
+import { ChangeUserPasswordFormData } from "~/components/Profile/Password";
 import { RegisterFormData } from "~/pages/dang-ky";
 import { ResetPasswordFormData } from "~/pages/quen-mat-khau";
 import { ChangePasswordFormData } from "~/pages/quen-mat-khau/[passwordToken]/[accountId]";
@@ -64,6 +65,26 @@ export const changePassword = createAsyncThunk(
         setTimeout(() => {
           payload.router.push("/dang-nhap");
         }, 2000);
+      }
+    } catch (error: any) {
+      showToast("error", error.response.data.message);
+    }
+  }
+);
+
+export const changeUserPassword = createAsyncThunk(
+  "auth/changeUserPassword",
+  async (payload: { data: ChangeUserPasswordFormData; jwt: string }) => {
+    const { data: passwordData, jwt } = payload;
+
+    try {
+      const { data, status } = await AuthServices.changeUserPassword({
+        data: passwordData,
+        jwt,
+      });
+
+      if (status === 200) {
+        showToast("success", data.message);
       }
     } catch (error: any) {
       showToast("error", error.response.data.message);
