@@ -8,7 +8,7 @@ interface ActorProps {
 
 const Actor: React.FC<ActorProps> = ({ actor }) => {
   return (
-    <div className="w-full rounded overflow-hidden flex flex-col">
+    <div className="w-full rounded-lg overflow-hidden flex flex-col">
       <Link href={`/dien-vien/${actor.slug}`}>
         <div className="group rounded relative w-full aspect-square mb-2 overflow-hidden">
           <Image
