@@ -70,7 +70,14 @@ const ChangePassword: NextPage = () => {
         <div className="min-h-fit container mx-auto py-10 flex justify-center items-center">
           <div className="pt-[3px] bg-gradient-to-r from-light-pink to-light-red rounded overflow-hidden">
             <div className="w-[500px] max-w-full bg-dark-bg-secondary p-16 flex flex-col items-center gap-y-8 shadow-lg">
-              <Image src={logo} alt="" />
+              <div className="relative w-52 h-16">
+                <Image
+                  src="/assets/images/logo-text-red.png"
+                  alt=""
+                  fill
+                  objectFit="contain"
+                />
+              </div>
               <h1 className="text-2xl font-bold uppercase text-gray-100">
                 Tạo mật khẩu mới
               </h1>

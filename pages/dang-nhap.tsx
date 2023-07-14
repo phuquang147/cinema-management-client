@@ -7,7 +7,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
-import logo from "~/assets/images/logo-red.svg";
 import Button from "~/components/UI/Button";
 import TextField from "~/components/UI/TextField";
 import showToast from "~/utils/showToast";
@@ -58,7 +57,14 @@ const Login: NextPage = () => {
         <div className="min-h-fit container mx-auto py-10 flex justify-center items-center">
           <div className="pt-[3px] bg-gradient-to-r from-light-pink to-light-red rounded overflow-hidden">
             <div className="w-[500px] max-w-full bg-dark-bg-secondary p-16 flex flex-col items-center gap-y-8 shadow-lg">
-              <Image src={logo} alt="" />
+              <div className="relative w-52 h-16">
+                <Image
+                  src="/assets/images/logo-text-red.png"
+                  alt=""
+                  fill
+                  objectFit="contain"
+                />
+              </div>
               <h1 className="text-2xl font-bold uppercase text-gray-100">
                 Đăng Nhập
               </h1>
