@@ -37,7 +37,7 @@ const TextField: React.FC<TextFieldProps> = ({
   inputClassName,
   containerClassName,
   multiple = false,
-  value = "",
+  value,
   onChange,
 }) => {
   const [insideType, setInsideType] = useState<HTMLInputTypeAttribute>("text");
@@ -72,9 +72,10 @@ const TextField: React.FC<TextFieldProps> = ({
         ) : (
           <input
             type={insideType}
+            {...(value !== undefined
+              ? { value: value, onChange: onChange }
+              : {})}
             {...register?.(name)}
-            // value={value}
-            // onChange={onChange}
             className={`w-full outline-none px-6 py-2 rounded border-2 border-b-gray-200 dark:border-dark-bg-primary hover:border-primary focus:border-primary transition-colors duration-200 bg-white dark:bg-dark-bg-primary text-gray-text dark:text-light-text ${
               type === "password" && "pr-10"
             } ${inputClassName}`}
