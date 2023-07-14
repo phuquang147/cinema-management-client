@@ -52,7 +52,7 @@ module.exports = {
         text: "3px 3px 0px #f45e61",
       },
       boxShadow: {
-        red: "0 0 20px 0 rgba(255, 88, 96, 0.5)",
+        red: "0 0 16px 0 rgba(255, 88, 96, 0.3)",
       },
       backgroundImage: {
         footer: "url('~/assets/images/footer-bg.svg')",

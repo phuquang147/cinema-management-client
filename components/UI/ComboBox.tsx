@@ -47,7 +47,10 @@ const ComboBox: React.FC<ComboBoxProps> = ({
         onChange={onChange}
       >
         {options.map((option) => (
-          <option key={typeof option === "string" ? option : option.value}>
+          <option
+            key={typeof option === "string" ? option : option.value}
+            value={typeof option === "string" ? option : option.value}
+          >
             {typeof option === "string" ? option : option.label}
           </option>
         ))}

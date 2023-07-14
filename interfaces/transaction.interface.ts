@@ -12,8 +12,10 @@ export default interface ITransaction {
     quantity: number;
   }[];
   showTime: {
-    movie: string;
+    movieId: string;
+    movieName: string;
     startTime: string;
+    thumbnail: string;
   };
   staff?: {
     _id: string;
@@ -31,4 +33,9 @@ export default interface ITransaction {
       name: string;
     };
   }[];
+  review?: {
+    _id: string;
+    score: number;
+    description: string;
+  };
 }

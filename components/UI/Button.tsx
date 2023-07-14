@@ -16,15 +16,16 @@ type ButtonProps = {
   width?: string;
 };
 
-const general = "disabled:cursor-not-allowed transition-colors duration-200";
+const general =
+  "h-12 disabled:cursor-not-allowed transition-colors duration-200";
 
 const text = "text-base font-bold font-public-sans";
 
 const padding = {
-  primary: "py-3 px-6",
+  primary: "px-6",
   contained: "py-3 px-6",
   icon: "py-2 px-2",
-  outlined: "py-3 px-6",
+  outlined: "px-6",
 };
 
 const color = {
