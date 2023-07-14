@@ -25,4 +25,5 @@ export default interface IMovie {
   trailer: string;
   slug: string;
   comments: IComment[];
+  totalScore: number;
 }
