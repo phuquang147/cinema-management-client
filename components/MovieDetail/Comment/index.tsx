@@ -43,7 +43,6 @@ const Comment: FC<CommentProps> = ({
   const [showReplies, setShowReplies] = useState<boolean>(false);
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const optionsRef = useRef<HTMLDivElement>(null);
-  console.log(session);
 
   const handleLikeComment = () => {
     dispatch(
@@ -81,6 +80,9 @@ const Comment: FC<CommentProps> = ({
       inputAttributes: {
         autocapitalize: "off",
       },
+      color: localStorage.getItem("theme") === "dark" ? "#ccc" : "#333",
+      background:
+        localStorage.getItem("theme") === "dark" ? "#222831" : "#f1ece5",
       showCancelButton: true,
       confirmButtonText: "Cập nhật",
       confirmButtonColor: "#f45e61",
@@ -153,7 +155,7 @@ const Comment: FC<CommentProps> = ({
         <div className="flex gap-4">
           <div className="relative h-12 w-12 rounded-full overflow-hidden">
             <Image
-              src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aHVtYW58ZW58MHx8MHx8fDA%3D&w=1000&q=80"
+              src="/assets/images/user.png"
               alt=""
               fill
               objectFit="cover"

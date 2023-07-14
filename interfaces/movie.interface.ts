@@ -9,6 +9,17 @@ export interface IComment {
   updatedAt: string;
   _id: string;
 }
+
+export interface IReview {
+  createdAt: string;
+  description: string;
+  reviewer: {
+    name: string;
+  };
+  score: number;
+  updatedAt: string;
+  _id: string;
+}
 export default interface IMovie {
   _id: string;
   name: string;
@@ -26,4 +37,5 @@ export default interface IMovie {
   slug: string;
   comments: IComment[];
   totalScore: number;
+  reviews: IReview[];
 }

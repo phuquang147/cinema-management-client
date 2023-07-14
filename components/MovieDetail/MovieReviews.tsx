@@ -1,12 +1,16 @@
+import { IReview } from "~/interfaces/movie.interface";
 import Review from "./Review";
 
-type MovieReviewsProps = {};
+type MovieReviewsProps = {
+  reviews: IReview[];
+};
 
-const MovieReviews: React.FC<MovieReviewsProps> = () => {
+const MovieReviews: React.FC<MovieReviewsProps> = ({ reviews }) => {
   return (
     <div className="flex flex-col gap-8">
-      <Review />
-      <Review />
+      {reviews.map((review) => (
+        <Review key={review._id} review={review} />
+      ))}
     </div>
   );
 };

@@ -181,7 +181,9 @@ const Movie: NextPage = ({
               {activeTab === 1 && (
                 <MovieGallery images={(movie as IMovie).images} />
               )}
-              {activeTab === 2 && <MovieReviews />}
+              {activeTab === 2 && (
+                <MovieReviews reviews={(movie as IMovie).reviews} />
+              )}
               {activeTab === 3 && <MovieComments movie={movie} />}
             </div>
           </div>
