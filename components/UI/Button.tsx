@@ -21,10 +21,10 @@ const general = "disabled:cursor-not-allowed transition-colors duration-200";
 const text = "text-base font-bold font-public-sans";
 
 const padding = {
-  primary: "py-3 px-8",
-  contained: "py-3 px-8",
+  primary: "py-3 px-6",
+  contained: "py-3 px-6",
   icon: "py-2 px-2",
-  outlined: "py-[3px] px-[3px]",
+  outlined: "py-3 px-6",
 };
 
 const color = {
@@ -40,15 +40,15 @@ const backgroundColors = {
   contained: "bg-primary",
   icon: "bg-transparent",
   outlined:
-    "bg-gradient-to-r from-light-pink to-light-red shadow-red hover:brightness-110 transition-all duration-200 active:shadow-none",
+    "shadow-sm shadow-red hover:brightness-110 transition-all duration-200 active:shadow-none",
 };
 
 const border = {
-  primary: "outline-none rounded",
+  primary: "outline-none rounded-lg",
   contained:
     "outline-none rounded focus:ring-1 focus:ring-primary ring-offset-2",
   icon: "border-primary text-primary hover:bg-primary hover:text-white outline-none rounded-full border-[1px] focus:ring-1 focus:ring-primary ring-offset-2",
-  outlined: "outline-none rounded",
+  outlined: "outline-none rounded-lg border-2 border-light-red",
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -122,15 +122,7 @@ const Button: React.FC<ButtonProps> = ({
       className={baseClasses.join(" ")}
       disabled={disabled}
     >
-      {variant === "outlined" ? (
-        <div
-          className={`py-[9px] px-[29px] bg-white dark:bg-dark-bg-primary rounded-sm ${outlinedClassName}`}
-        >
-          {children}
-        </div>
-      ) : (
-        children
-      )}
+      {children}
     </button>
   );
 };
