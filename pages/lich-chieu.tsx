@@ -1,26 +1,17 @@
-import _ from "lodash";
 import { NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import Heading from "~/components/Heading";
 import ShowTime from "~/components/ShowTimes/ShowTime";
-import IShowTime from "~/interfaces/showTime.interface";
 import { useAppDispatch, useAppSelector } from "~/redux/hooks";
 import { getShowTimesByDate, setShowTimes } from "~/redux/slices/ShowTimeSlice";
-import { dateTimeToISO, getSevenDatesFromToday } from "~/utils/formatDateTime";
-
-export type MappedShowTime = {
-  name: string;
-  thumbnail: string;
-  showTimes: IShowTime[];
-};
+import { getSevenDatesFromToday } from "~/utils/formatDateTime";
 
 const ShowTimes: NextPage = () => {
   const dispatch = useAppDispatch();
   const sevenDatesFromToday = getSevenDatesFromToday();
   const [date, setDate] = useState<string>(sevenDatesFromToday[0].date);
-  const { showTimes } = useAppSelector((state) => state.showTime);
-  const [mappedShowTimes, setMappedShowTimes] = useState<MappedShowTime[]>([]);
+  const { mappedShowTimes } = useAppSelector((state) => state.showTime);
   const [activeTab, setActiveTab] = useState<number>(0);
 
   const handleChangeDate = (year: number, newDate: string, index: number) => {
@@ -46,23 +37,6 @@ const ShowTimes: NextPage = () => {
       getShowTimesByDate({ date: new Date().toISOString().slice(0, 10) })
     );
   }, []);
-
-  useEffect(() => {
-    const grouppedShowTimesByMovie = _.groupBy(
-      showTimes,
-      (showTime) => showTime.movie.name
-    );
-
-    const mappedShowTimes = _.values(
-      _.mapValues(grouppedShowTimesByMovie, (showTimesByMovie) => ({
-        name: showTimesByMovie[0].movie.name,
-        thumbnail: showTimesByMovie[0].movie.thumbnail,
-        showTimes: showTimesByMovie,
-      }))
-    );
-
-    setMappedShowTimes(mappedShowTimes);
-  }, [showTimes]);
 
   return (
     <>
