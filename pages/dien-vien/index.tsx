@@ -65,10 +65,10 @@ const Actors: NextPage = () => {
       </Head>
       <div className="bg-white dark:bg-dark-bg-primary">
         <Heading content="Diễn viên" />
-        <div className="container mx-auto py-10 grid grid-cols-3 gap-6">
+        <div className="container mx-auto py-10 grid grid-cols-3 gap-10">
           <div className="col-span-3 lg:col-span-2">
-            <div className="w-full p-4 bg-light-gray-bg dark:bg-dark-bg-secondary flex gap-4">
-              <div className="flex-1 flex flex-col gap-1 max-w-[300px]">
+            <div className="w-full p-6 bg-light-gray-bg dark:bg-dark-bg-secondary flex gap-4 rounded-lg">
+              <div className="flex-1 flex flex-col gap-1">
                 <p className="text-gray-text dark:text-light-text">Tìm kiếm</p>
                 <TextField
                   placeholder="Tìm kiếm"
@@ -78,7 +78,7 @@ const Actors: NextPage = () => {
                   onChange={handleInputChange}
                 />
               </div>
-              <div className="flex-1 flex flex-col gap-1 max-w-[300px]">
+              <div className="flex-1 flex flex-col gap-1">
                 <p className="text-gray-text dark:text-light-text">Quốc tịch</p>
                 <ComboBox
                   options={NATIONS.concat(nations)}
