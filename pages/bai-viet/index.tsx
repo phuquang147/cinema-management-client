@@ -53,9 +53,9 @@ const Posts: NextPage = () => {
       </Head>
       <div className="bg-light-bg-primary dark:bg-dark-bg-primary">
         <Heading content="Bài viết" />
-        <div className="container mx-auto py-10 grid grid-cols-3 gap-6">
+        <div className="container mx-auto py-10 grid grid-cols-3 gap-10">
           <div className="col-span-3 lg:col-span-2">
-            <div className="w-full p-4 bg-light-bg-secondary dark:bg-dark-bg-secondary flex gap-4">
+            <div className="w-full p-6 bg-light-bg-secondary dark:bg-dark-bg-secondary flex gap-4 rounded-lg">
               <div className="flex-1 flex flex-col gap-1 max-w-[300px]">
                 <p className="text-gray-text dark:text-light-text">Tìm kiếm</p>
                 <TextField
