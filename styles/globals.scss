@@ -324,12 +324,13 @@ $border-color-hover: $color-black;
 
   & span,
   & strong,
+  & span,
   & p {
-    color: #ccc !important;
+    color: black !important;
   }
 
   & a {
-    color: white !important;
+    color: black !important;
     font-weight: 600;
   }
 
@@ -390,6 +391,14 @@ $border-color-hover: $color-black;
 
   & ol > li::before {
     margin-left: -32px !important;
+  }
+}
+
+html.dark .ql-editor {
+  & span,
+  & a,
+  & p {
+    color: #ddd !important;
   }
 }
 
