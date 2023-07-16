@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import IShowTime from "~/interfaces/showTime.interface";
-import { MappedShowTime } from "~/pages/lich-chieu";
 import { useAppDispatch } from "~/redux/hooks";
 import { selectShowTime } from "~/redux/slices/BookingSlice";
+import { MappedShowTime } from "~/redux/slices/ShowTimeSlice";
 
 type ShowTimeProps = {
   showTime: MappedShowTime;
@@ -32,7 +32,7 @@ const ShowTime: React.FC<ShowTimeProps> = ({ showTime }) => {
           {showTime.name}
         </Link>
         <div className="flex gap-3 flex-wrap mt-4">
-          {showTime.showTimes.map((time) => (
+          {showTime.showTimes.map((time: IShowTime) => (
             <div
               key={time._id}
               className="px-3 py-2 text-sm text-gray-text dark:text-light-text border border-gray-400 hover:border-primary hover:bg-primary hover:text-white dark:hover:text-white transition-colors duration-200 rounded-md cursor-pointer"
