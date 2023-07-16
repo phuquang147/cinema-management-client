@@ -12,7 +12,6 @@ const schema = yup
     name: yup.string().required("Vui lòng nhập tên đăng nhập"),
     phone: yup.string().required("Vui lòng nhập số điện thoại"),
     gender: yup.string().required("Vui lòng nhập giới tính"),
-    email: yup.string().required("Vui lòng nhập email"),
     password: yup.string().required("Vui lòng nhập mật khẩu"),
     confirmPassword: yup.string().required("Vui lòng xác nhận mật khẩu"),
     dateOfBirth: yup.string().required("Vui lòng nhập ngày tháng năm sinh"),
@@ -38,8 +37,10 @@ const Info: React.FC<InfoProps> = ({ user }) => {
   };
 
   return (
-    <div className="w-full p-4 bg-dark-bg-secondary">
-      <h1 className="font-bold text-lg text-gray-100">Thông tin</h1>
+    <div className="w-full p-6 bg-light-bg-secondary dark:bg-dark-bg-secondary shadow-sm">
+      <h1 className="font-bold text-lg text-gray-text dark:text-light-text">
+        Thông tin
+      </h1>
 
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -61,16 +62,6 @@ const Info: React.FC<InfoProps> = ({ user }) => {
           containerClassName="col-span-4"
           className="bg-dark-bg-primary text-white"
           error={errors.gender}
-        />
-
-        <TextField
-          type="email"
-          name="email"
-          placeholder="Email"
-          register={register}
-          error={errors.email}
-          containerClassName="col-span-12"
-          inputClassName="bg-dark-bg-primary text-white"
         />
         <TextField
           type="tel"

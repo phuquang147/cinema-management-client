@@ -9,7 +9,7 @@ const Profile: FC = () => {
 
   return session ? (
     <Link href="/tai-khoan" className="min-w-fit flex items-center gap-2">
-      <div className="relative w-8 h-8">
+      <div className="relative w-10 h-10">
         <Image src="/assets/images/user.png" fill alt="" draggable={false} />
       </div>
       <p className="text-gray-text dark:text-light-text">
@@ -18,7 +18,7 @@ const Profile: FC = () => {
     </Link>
   ) : (
     <div>
-      <Button className="hidden lg:block" to="/dang-nhap">
+      <Button className="hidden lg:flex" to="/dang-nhap">
         Đăng nhập
       </Button>
     </div>
