@@ -9,6 +9,7 @@ import { createComment } from "~/redux/slices/MovieSlice";
 import Button from "../UI/Button";
 import TextField from "../UI/TextField";
 import Comment from "./Comment";
+import Paginator from "../UI/Paginator";
 
 export interface CommentFormData {
   comment: string;
@@ -31,6 +32,13 @@ const MovieComments: FC<MovieCommentsProps> = ({ movie }) => {
   const session = useSession();
 
   const [comments, setComments] = useState<IComment[]>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
+  const currentItems = comments.slice(currentPage * 5 - 5, currentPage * 5);
+
+  const handleChangePage = (selectedPage: number) => {
+    setCurrentPage(selectedPage);
+  };
 
   useEffect(() => {
     setComments(movie.comments);
@@ -82,8 +90,8 @@ const MovieComments: FC<MovieCommentsProps> = ({ movie }) => {
           </form>
         </div>
       )}
-      <div className="flex flex-col gap-8 mt-8">
-        {comments.map((comment) => (
+      <div className="flex flex-col gap-8 mt-8 pb-10">
+        {currentItems.map((comment) => (
           <Comment
             key={comment._id}
             comment={comment}
@@ -92,6 +100,12 @@ const MovieComments: FC<MovieCommentsProps> = ({ movie }) => {
           />
         ))}
       </div>
+      <Paginator
+        itemCount={comments.length}
+        currentPage={currentPage}
+        onChangePage={handleChangePage}
+        itemsPerPage={5}
+      />
     </div>
   );
 };

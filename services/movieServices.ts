@@ -96,16 +96,6 @@ const MovieServices = {
       data: { parentComment, movie },
     });
   },
-  // createRating: (data: { rating: RatingFormData; jwt: string }) => {
-  //   return Axios({
-  //     url: URL_CREATE_COMMENT,
-  //     method: "POST",
-  //     headers: {
-  //       Authorization: `Bearer ${data.jwt}`,
-  //     },
-  //     data: data.rating,
-  //   });
-  // },
 };
 
 export default MovieServices;

@@ -27,12 +27,16 @@ import Replies from "./Replies";
 import ReplyForm from "./ReplyForm";
 
 type CommentProps = {
+  type?: "parent" | "child";
+  parentComment?: string;
   comment: IComment;
   movieId: string;
   handleUpdateComments: (comments: IComment[]) => void;
 };
 
 const Comment: FC<CommentProps> = ({
+  type = "parent",
+  parentComment,
   comment,
   movieId,
   handleUpdateComments,
@@ -116,13 +120,16 @@ const Comment: FC<CommentProps> = ({
       confirmButtonText: "Xác nhận",
       confirmButtonColor: "#f45e61",
       cancelButtonText: "Hủy",
+      color: localStorage.getItem("theme") === "dark" ? "#ccc" : "#333",
+      background:
+        localStorage.getItem("theme") === "dark" ? "#222831" : "#f1ece5",
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(
           deleteComment({
             commentId: comment._id,
             jwt: (session as any).data?.user.token,
-            parentComment: null,
+            parentComment: parentComment ? parentComment : null,
             movie: movieId,
             handleUpdateComments,
           })
@@ -202,7 +209,7 @@ const Comment: FC<CommentProps> = ({
               <IconThumbDown className="text-red-400" />{" "}
               {comment.dislikes.length}
             </button>
-            {session.data && (
+            {session.data && type === "parent" && (
               <button
                 className={`flex items-center gap-1 px-4 py-2 rounded ${
                   showReplyForm

@@ -257,35 +257,6 @@ export const deleteComment = createAsyncThunk(
   }
 );
 
-// export const createRating = createAsyncThunk(
-//   "movie/createRating",
-//   async (
-//     payload: {
-//       rating: RatingFormData;
-//       jwt: string;
-//       reset: UseFormReset<CommentFormData>;
-//     },
-//     thunkApi
-//   ) => {
-//     const { rating, jwt, reset } = payload;
-
-//     try {
-//       const { data, status } = await MovieServices.createRating({
-//         rating,
-//         jwt,
-//       });
-
-//       if (status === 201) {
-//         console.log(data);
-//         reset();
-//         showToast("success", data.message);
-//       }
-//     } catch (error: any) {
-//       showToast("error", error.response.data.message);
-//     }
-//   }
-// );
-
 export const { setMovies, setShowingMovies, setIncomingMovies, applyFilter } =
   movieSlice.actions;
 

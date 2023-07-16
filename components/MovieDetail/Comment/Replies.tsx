@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { IComment } from "~/interfaces/movie.interface";
-import SubComment from "../SubComment";
+import Comment from "./index";
 
 type RepliesProps = {
   comment: IComment;
@@ -16,8 +16,9 @@ const Replies: FC<RepliesProps> = ({
   return (
     <div className="flex flex-col gap-8">
       {comment.replies.map((reply) => (
-        <SubComment
+        <Comment
           key={reply._id}
+          type="child"
           parentComment={comment._id}
           comment={reply}
           handleUpdateComments={handleUpdateComments}

@@ -33,7 +33,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
-const tabs = ["Thông tin", "Bộ ảnh", "Review", "Bình luận"];
+const tabs = ["Thông tin", "Bộ ảnh", "Đánh giá", "Bình luận"];
 
 const Movie: NextPage = ({
   movie,

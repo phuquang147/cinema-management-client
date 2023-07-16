@@ -67,11 +67,19 @@ const ShowTimes: NextPage = () => {
               ))}
             </ul>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-6 gap-4">
-            {mappedShowTimes.map((showTime) => (
-              <ShowTime showTime={showTime} key={showTime.name} />
-            ))}
-          </div>
+          {mappedShowTimes.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-6 gap-4">
+              {mappedShowTimes.map((showTime) => (
+                <ShowTime showTime={showTime} key={showTime.name} />
+              ))}
+            </div>
+          ) : (
+            <div className="w-full h-96 flex justify-center items-center">
+              <p className="text-gray-text dark:text-light-text">
+                Chưa có lịch chiếu
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </>
