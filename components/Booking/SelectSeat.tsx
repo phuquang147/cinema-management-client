@@ -106,36 +106,38 @@ const SelectSeat: React.FC<SelectSeatProps> = ({ handleNextStep }) => {
           <p className="text-gray-text dark:text-light-text">Ghế trống</p>
         </div>
       </div>
-      <TransformWrapper minScale={0.5}>
-        <TransformComponent>
-          <div className="w-full bg-gray-700 text-white text-center font-bold py-2 rounded mb-2">
-            Màn Hình
-          </div>
-          <div>
-            {tickets.map((row, rowIndex) => (
-              <div
-                key={`${rowIndex}${row[0] && row[0]._id}`}
-                className="flex w-fit"
-              >
-                {row.map((col, colIndex) => {
-                  return (
-                    <Ticket
-                      key={col ? col._id : `${rowIndex}${colIndex}`}
-                      ticket={col}
-                      selectedTickets={selectedTickets}
-                      selectTicket={selectTicket}
-                      unSelectTicket={unSelectTicket}
-                      rowIndex={rowIndex}
-                      colIndex={colIndex}
-                    />
-                  );
-                })}
-              </div>
-            ))}
-          </div>
-          <hr className="w-full mt-10"></hr>
-        </TransformComponent>
-      </TransformWrapper>
+      {/* <TransformWrapper minScale={0.5}> */}
+      {/* <TransformComponent> */}
+      <div>
+        <div className="w-full bg-gray-700 text-white text-center font-bold py-2 rounded mb-2">
+          Màn Hình
+        </div>
+        <div>
+          {tickets.map((row, rowIndex) => (
+            <div
+              key={`${rowIndex}${row[0] && row[0]._id}`}
+              className="flex w-fit"
+            >
+              {row.map((col, colIndex) => {
+                return (
+                  <Ticket
+                    key={col ? col._id : `${rowIndex}${colIndex}`}
+                    ticket={col}
+                    selectedTickets={selectedTickets}
+                    selectTicket={selectTicket}
+                    unSelectTicket={unSelectTicket}
+                    rowIndex={rowIndex}
+                    colIndex={colIndex}
+                  />
+                );
+              })}
+            </div>
+          ))}
+        </div>
+        <hr className="w-full mt-10"></hr>
+      </div>
+      {/* </TransformComponent> */}
+      {/* </TransformWrapper> */}
       <div className="w-full flex justify-start items-center flex-wrap mt-6 gap-2">
         <p className="text-gray-text dark:text-light-text">
           Danh sách ghế đã chọn:

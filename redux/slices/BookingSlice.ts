@@ -86,10 +86,11 @@ export const createTransaction = createAsyncThunk(
     payload: {
       transaction: TransactionData;
       jwt: string;
+      handlePaymentSuccess: () => void;
     },
     thunkApi
   ) => {
-    const { transaction, jwt } = payload;
+    const { transaction, jwt, handlePaymentSuccess } = payload;
 
     try {
       const { data, status } = await TransactionServices.createTransaction({
@@ -98,7 +99,7 @@ export const createTransaction = createAsyncThunk(
       });
 
       if (status === 201) {
-        showToast("success", data.message);
+        handlePaymentSuccess();
       }
     } catch (error: any) {
       showToast("error", error.response.data.message);

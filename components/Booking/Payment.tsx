@@ -1,11 +1,13 @@
+import { IconChevronLeft } from "@tabler/icons";
 import { useSession } from "next-auth/react";
-import IUser from "~/interfaces/user.interface";
-import { useAppDispatch, useAppSelector } from "~/redux/hooks";
-import { ISOToDateTimeFormat } from "~/utils/formatDateTime";
-import Button from "../UI/Button";
-import { printNumberWithCommas } from "~/utils/printNumerWithCommas";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+import { useAppDispatch, useAppSelector } from "~/redux/hooks";
 import { createTransaction } from "~/redux/slices/BookingSlice";
+import { ISOToDateTimeFormat } from "~/utils/formatDateTime";
+import { printNumberWithCommas } from "~/utils/printNumerWithCommas";
+import Button from "../UI/Button";
 
 export interface TransactionData {
   tickets: string[];
@@ -20,6 +22,7 @@ const Payment: React.FC<PaymentProps> = ({ handleBack }) => {
   const dispatch = useAppDispatch();
   const session = useSession();
   const { data } = useSession();
+  const router = useRouter();
   const { showTime, tickets, snacks } = useAppSelector(
     (state) => state.booking
   );
@@ -37,6 +40,21 @@ const Payment: React.FC<PaymentProps> = ({ handleBack }) => {
     );
   }, [tickets, snacks]);
 
+  const handlePaymentSuccess = () => {
+    Swal.fire({
+      icon: "success",
+      text: "Đặt vé thành công",
+      color: localStorage.getItem("theme") === "dark" ? "#ccc" : "#333",
+      background:
+        localStorage.getItem("theme") === "dark" ? "#222831" : "#f1ece5",
+      confirmButtonText: "Đặt vé mới",
+      confirmButtonColor: "#f45e61",
+      allowOutsideClick: false,
+    }).then(function () {
+      router.replace("/lich-chieu");
+    });
+  };
+
   const handleCreateTransaction = () => {
     dispatch(
       createTransaction({
@@ -47,68 +65,77 @@ const Payment: React.FC<PaymentProps> = ({ handleBack }) => {
             .map((snack) => ({ id: snack._id, quantity: snack.count })),
         },
         jwt: (session as any).data?.user.token,
+        handlePaymentSuccess,
       })
     );
   };
 
   return (
-    <div className="w-full flex flex-col items-start bg-white dark:bg-dark-bg-primary p-8 text-gray-text dark:text-light-text">
-      <h2 className="text-2xl font-bold text-primary">Thông tin người mua</h2>
+    <div className="w-full flex flex-col items-start bg-white dark:bg-dark-bg-secondary p-8 text-gray-text dark:text-light-text rounded-lg">
+      <h2 className="text-xl font-bold text-primary">Thông tin đặt vé</h2>
       <p className="mt-2">
         <b>Họ và tên:</b> {(data?.user as any).user?.name}
       </p>
-      <p className="mt-1">
-        <b>Email:</b> {(data?.user as any).user?.email}
-      </p>
-      <p className="mt-1">
+      <p className="mt-2">
         <b>Số điện thoại:</b> {(data?.user as any).user?.phone}
       </p>
-      <h2 className="text-2xl font-bold text-primary mt-6">Thông tin vé</h2>
       <p className="mt-2">
         <b>Tên phim:</b> {showTime?.movie.name}
       </p>
-      <p className="mt-1">
-        <b>Xuất chiếu:</b> {ISOToDateTimeFormat(showTime?.startTime || "")}
+      <p className="mt-2">
+        <b>Suất chiếu:</b> {ISOToDateTimeFormat(showTime?.startTime || "")}
       </p>
-      <div className="my-2 flex flex-row items-center">
-        <b className="min-w-fit">Danh sách ghế đã chọn:</b>
-        <div className="flex flex-row gap-2 ml-2 flex-wrap">
-          {tickets.map((ticket) => (
-            <div
-              key={ticket._id}
-              className="bg-gray-100 dark:bg-gray-700 py-1 px-4 rounded"
-            >
-              {`${ticket.ticketId.seat.name} (${printNumberWithCommas(
-                ticket.ticketId.price
-              )} VNĐ)`}
-            </div>
-          ))}
-        </div>
-      </div>
 
-      <h2 className="text-2xl font-bold text-primary mt-6">
-        Thông tin bắp nước
-      </h2>
-      <div className="w-full flex flex-col gap-2 mt-4">
-        {snacks
-          .filter((snack) => snack.count > 0)
-          .map((snack) => (
-            <div
-              key={snack._id}
-              className="w-full flex justify-between bg-gray-100 dark:bg-gray-700 py-2 px-4 rounded"
-            >
-              <p>{`${snack.name} (${snack.price} VNĐ) x ${snack.count}`}</p>
-              <p className="font-bold text-primary">
-                {printNumberWithCommas(snack.price * snack.count)} VNĐ
-              </p>
-            </div>
-          ))}
+      <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div>
+          <h2 className="text-xl font-bold text-primary mt-6">Danh sách ghế</h2>
+          <div className="w-full flex flex-col gap-2 mt-4">
+            {tickets.map((ticket) => (
+              <div
+                key={ticket._id}
+                className="w-full flex justify-between bg-gray-100 dark:bg-gray-700 py-2 px-4 rounded"
+              >
+                <p>{ticket.ticketId.seat.name}</p>
+                <p className="font-bold text-primary">
+                  {printNumberWithCommas(ticket.ticketId.price)} VNĐ
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <h2 className="text-xl font-bold text-primary mt-6">
+            Danh sách bắp nước
+          </h2>
+          <div className="w-full flex flex-col gap-2 mt-4">
+            {snacks
+              .filter((snack) => snack.count > 0)
+              .map((snack) => (
+                <div
+                  key={snack._id}
+                  className="w-full flex justify-between bg-gray-100 dark:bg-gray-700 py-2 px-4 rounded"
+                >
+                  <p>{`${snack.name} (${printNumberWithCommas(
+                    snack.price
+                  )} VNĐ) x ${snack.count}`}</p>
+                  <p className="font-bold text-primary">
+                    {printNumberWithCommas(snack.price * snack.count)} VNĐ
+                  </p>
+                </div>
+              ))}
+          </div>
+        </div>
       </div>
       <h2 className="text-2xl font-bold mt-6">
         <span className="text-gray-text dark:text-light-text">Tổng tiền:</span>{" "}
         <span className="text-primary">{printNumberWithCommas(total)} VNĐ</span>
       </h2>
-      <div className="w-full flex justify-end mt-4">
+      <div className="w-full flex justify-between mt-4">
+        <Button variant="outlined" onClick={handleBack}>
+          <div className="flex items-center gap-1">
+            <IconChevronLeft /> Chọn bắp nước
+          </div>
+        </Button>
         <Button onClick={handleCreateTransaction}>Xác nhận thanh toán</Button>
       </div>
     </div>

@@ -22,7 +22,7 @@ const SelectSnack: React.FC<SelectSnackProps> = ({
   }, [dispatch]);
 
   return (
-    <div className="w-full">
+    <div className="w-full bg-light-bg-primary dark:bg-dark-bg-primary">
       <div className="w-full grid grid-cols-4 gap-8">
         {snacks.map((snack) => (
           <div key={snack._id} className="col-span-1">
@@ -31,17 +31,14 @@ const SelectSnack: React.FC<SelectSnackProps> = ({
         ))}
       </div>
       <div className="w-full flex justify-between mt-10">
-        <Button
-          variant="outlined"
-          outlinedClassName="flex items-center"
-          onClick={handlePrevStep}
-        >
-          <IconChevronLeft /> Chọn bắp nước
+        <Button variant="outlined" onClick={handlePrevStep}>
+          <div className="flex items-center gap-1">
+            <IconChevronLeft /> Chọn ghế
+          </div>
         </Button>
         <Button
-          className="flex items-center"
+          className="flex items-center gap-1"
           onClick={() => {
-            // dispatch((selectedTickets));
             handleNextStep();
           }}
         >

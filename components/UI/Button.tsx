@@ -17,7 +17,7 @@ type ButtonProps = {
 };
 
 const general =
-  "h-12 disabled:cursor-not-allowed transition-colors duration-200";
+  "h-12 disabled:cursor-not-allowed transition-colors duration-200 flex items-center justify-center";
 
 const text = "text-base font-bold font-public-sans";
 

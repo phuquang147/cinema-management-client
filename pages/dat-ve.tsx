@@ -24,7 +24,7 @@ const Booking: NextPage = () => {
       <Head>
         <title>Đặt vé</title>
       </Head>
-      <div className="bg-white dark:bg-dark-bg-primary">
+      <div className="bg-light-bg-primary dark:bg-dark-bg-primary">
         <div className="container mx-auto flex flex-col items-center justify-center">
           <Stepper
             steps={steps}
